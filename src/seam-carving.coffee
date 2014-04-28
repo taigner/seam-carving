@@ -21,8 +21,10 @@ gradient = (image) ->
 
             left = if x == 0 then here else getPixel(image, x-1, y)
             right = if x == image.width-1 then here else getPixel(image, x+1, y)
+            above = if y == 0 then here else getPixel(image, x, y-1)
+            below = if y == image.height-1 then here else getPixel(image, x, y+1)
 
-            setPixel(gradient, x, y, grayscale(magnitude(left, right)))
+            setPixel(gradient, x, y, grayscale(magnitude(left, right) + magnitude(above, below)))
     gradient
 
 magnitude = (pixel1, pixel2) ->
